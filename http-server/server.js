@@ -9,4 +9,6 @@ app.post('/', function (_, res) { res.send('Got a POST request') });
 
 app.put('/', function (_, res) { res.send('Got a PUT request') });
 
+app.delete('/', function (_, res) { res.send('Got a DELETE request') });
+
 app.listen(port, () => console.log(`Server start at port ${port}`));
