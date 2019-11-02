@@ -8,12 +8,10 @@ app.get('/202', (_, res) => res.status(202).send('Accepted'));
 app.get('/203', (_, res) => res.status(203).send('Non-Authoritativ Information'));
 app.get('/204', (_, res) => res.status(204).send('No Content'));
 
-
 app.get('/301', (_, res) => res.status(301).send('Moved Permanently'));
 app.get('/302', (_, res) => res.status(302).send('Found'));
 app.get('/303', (_, res) => res.status(303).send('See Other'));
 app.get('/304', (_, res) => res.status(304).send('Not Modified'));
-
 
 app.get('/400', (_, res) => res.status(400).send('Bad request'));
 app.get('/401', (_, res) => res.status(401).send('Unauthorized'));
