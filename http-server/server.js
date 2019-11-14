@@ -1,4 +1,6 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
 const app = express();
 const port = 9000;
 
@@ -27,6 +29,28 @@ app.get('/502', (_, res) => { res.status(502).send('Bad Gateway') });
 app.get('/503', (_, res) => { res.status(503).send('Service Unavailable') });
 
 app.post('/', function (_, res) { res.send('Got a POST request') });
+app.post('/postWithData', [bodyParser.json(), function (req, res) {
+    console.log(req.body);
+    res.send('Message received');
+}]);
+
+app.post('/postWithDataHardWay', function (req, res) {
+    let body = [];
+
+    req
+        .on('data', (chunk) => {
+            body.push(chunk);
+        })
+        .on('end', () => {
+            body = Buffer.concat(body).toString();
+            console.log(JSON.parse(body));
+            res.send('Message received');
+        })
+        .on('error', (err) => {
+            res.status(500).send(err);
+        });
+});
+
 
 app.put('/', function (_, res) { res.send('Got a PUT request') });
 
